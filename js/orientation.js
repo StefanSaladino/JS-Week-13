@@ -19,28 +19,37 @@ const statusMsg = document.querySelector('#status');
 -------------------------------------------------- */
 
 // STEP 4a: Construct the error() function
+function error() {
+    // STEP 4b: Output a suitable error message
+    alert("Your device can't do that!");
+}
 
-// STEP 4b: Output a suitable error message
+
 
 
 /* Script Logic
 -------------------------------------------------- */
 // STEP 2a: Check support for the DeviceOrientationEvent
-
+if(!window.DeviceOrientationEvent){
 // STEP 2b: Do something helpful if there is no support for the DeviceOrientationEvent
-
+    error();
+} else {
 // STEP 3a: Build an event listener for the 'deviceorientation' event, and build out an anonymous callback function, passing in the event itself
-
+    window.addEventListener("deviceorientation", function(e){
+        console.log(e);
+    
 // STEP 3b: Capture the alpha value (rotation) and set the textContent for the <output> element
-
+        alphaValue.textContent = Math.round(e.alpha);
 // STEP 3c: Use the same value to update the position of the slider
-
+        alphaSlider.value = Math.round(e.alpha); 
 // STEP 3d: Capture the beta value (tilt toward/away) and set the textContent for the <output> element
-
+        betaValue.textContent = Math.round(e.beta);
 // STEP 3e: Use the same value to update the position of the slider
-
+        betaSlider.value = Math.round(e.beta);
 // STEP 3f: Capture the gamma value (tilt left/right) and set the textContent for the <output> element
-
+        gammaValue.textContent = Math.round(e.gamma);
 // STEP 3g: Use the same value to update the position of the slider
-
+        gammaSlider.value = Math.round(e.gamma);
+});
+}
 /* Learn more at https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent */
